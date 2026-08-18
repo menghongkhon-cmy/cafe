@@ -1484,3 +1484,103 @@ button {
     .countdown { gap: 0.5rem; }
     .time-box { min-width: 65px; padding: 0.5rem; }
 }
+
+/* ==================== ADMIN DASHBOARD STYLES ==================== */
+.admin-dashboard-content {
+    max-width: 850px;
+    width: 95%;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-tab-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.admin-tab-btn.active {
+    background: var(--primary-color);
+    color: #FFFFFF;
+}
+
+.admin-tab-content {
+    display: none;
+}
+
+.admin-tab-content.active {
+    display: block;
+}
+
+.admin-add-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    background: var(--light-bg);
+    padding: 1.2rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+}
+
+.admin-add-form textarea, .admin-add-form button {
+    grid-column: 1 / -1;
+}
+
+.admin-table-wrapper {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.admin-table th, .admin-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85rem;
+}
+
+.admin-table th {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+.admin-img-thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.status-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--gold);
+    color: #FFFFFF;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
