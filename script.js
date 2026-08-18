@@ -673,3 +673,5 @@ function initScrollAnimations() {
     if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.add('active'));
     if (navClose) navClose.addEventListener('click', () => navMenu.classList.remove('active'));
 }
+
+

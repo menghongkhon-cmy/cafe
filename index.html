@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,14 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- ==================== LOADING SCREEN ==================== -->
@@ -20,7 +24,9 @@
             <div class="coffee-cup-icon">☕</div>
             <h1 class="loader-logo">BREW & BEANS</h1>
             <p class="loader-text">Brewing your experience...</p>
-            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
         </div>
     </div>
 
@@ -46,7 +52,8 @@
             </div>
 
             <div class="nav-actions">
-                <button class="nav-action-btn" id="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="search-btn" title="Search"><i
+                        class="fa-solid fa-magnifying-glass"></i></button>
                 <button class="nav-action-btn" id="fav-btn" title="Favorites">
                     <i class="fa-regular fa-heart"></i>
                     <span class="badge" id="fav-count">0</span>
@@ -55,8 +62,13 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="badge" id="cart-count">0</span>
                 </button>
-                <button class="nav-action-btn" id="theme-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+                <button class="nav-action-btn" id="theme-btn" title="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
                 <div class="nav-toggle" id="nav-toggle"><i class="fa-solid fa-bars"></i></div>
+
+                <button class="nav-action-btn" id="admin-login-btn" title="Admin Portal">
+                    <i class="fa-solid fa-user-shield"></i>
+                </button>
             </div>
         </nav>
     </header>
@@ -78,7 +90,8 @@
                     <span class="hero-badge"><i class="fa-solid fa-mug-hot"></i> Freshly Brewed Every Day</span>
                     <h1 class="hero-title">BREW & BEANS</h1>
                     <p class="hero-subtitle">"Good Coffee. Good Mood. Good Moments."</p>
-                    <p class="hero-description">Experience handcrafted artisanal coffee, freshly baked morning pastries, and a warm cozy atmosphere tailored for coffee enthusiasts.</p>
+                    <p class="hero-description">Experience handcrafted artisanal coffee, freshly baked morning pastries,
+                        and a warm cozy atmosphere tailored for coffee enthusiasts.</p>
                     <div class="hero-buttons">
                         <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Order Now</a>
                         <a href="#menu" class="btn btn-secondary"><i class="fa-solid fa-book-open"></i> Explore Menu</a>
@@ -96,7 +109,8 @@
         <section class="about section container" id="about">
             <div class="about-grid">
                 <div class="about-img-wrapper reveal-left">
-                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Brew & Beans Café Interior" class="about-img">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80"
+                        alt="Brew & Beans Café Interior" class="about-img">
                     <div class="about-experience-badge">
                         <span class="exp-num">10+</span>
                         <span class="exp-text">Years of Coffee Excellence</span>
@@ -106,10 +120,13 @@
                     <span class="section-subtitle">Our Story</span>
                     <h2 class="section-title">Brewing Passion Since 2016</h2>
                     <p class="about-description">
-                        Founded in the heart of the city, Brew & Beans started with a simple mission: to craft the finest cup of coffee using ethically sourced, single-origin beans. Every batch is freshly roasted to perfection to bring out unique flavor notes.
+                        Founded in the heart of the city, Brew & Beans started with a simple mission: to craft the
+                        finest cup of coffee using ethically sourced, single-origin beans. Every batch is freshly
+                        roasted to perfection to bring out unique flavor notes.
                     </p>
                     <p class="about-description">
-                        Whether you are catching up with friends, getting work done, or enjoying a quiet morning, our warm atmosphere and artisanal menu welcome you.
+                        Whether you are catching up with friends, getting work done, or enjoying a quiet morning, our
+                        warm atmosphere and artisanal menu welcome you.
                     </p>
                     <div class="stats-container" id="stats-container">
                         <div class="stat-card">
@@ -162,8 +179,9 @@
                 <div class="specials-content">
                     <span class="specials-badge">🔥 TODAY'S SPECIAL OFFER</span>
                     <h2 class="specials-title">Buy 1 Coffee + Get 1 Cake at 50% OFF</h2>
-                    <p class="specials-desc">Treat yourself today! Order any signature espresso coffee and enjoy 50% discount on any fresh bakery slice.</p>
-                    
+                    <p class="specials-desc">Treat yourself today! Order any signature espresso coffee and enjoy 50%
+                        discount on any fresh bakery slice.</p>
+
                     <div class="countdown-wrapper">
                         <p class="countdown-title">Offer Ends In:</p>
                         <div class="countdown" id="countdown-timer">
@@ -187,35 +205,43 @@
 
             <div class="gallery-grid reveal-up">
                 <div class="gallery-item" data-index="0">
-                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Espresso Pouring">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80"
+                        alt="Espresso Pouring">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="1">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Coffee Cup Barista Art">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
+                        alt="Coffee Cup Barista Art">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="2">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cozy Café Seating">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80"
+                        alt="Cozy Café Seating">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="3">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Fresh Bakery Pastries">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80"
+                        alt="Fresh Bakery Pastries">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="4">
-                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80" alt="Barista At Work">
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80"
+                        alt="Barista At Work">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="5">
-                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80" alt="Iced Coffee Summer Drink">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80"
+                        alt="Iced Coffee Summer Drink">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="6">
-                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Pour Over Filter Coffee">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
+                        alt="Pour Over Filter Coffee">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="7">
-                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80" alt="Café Morning Atmosphere">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"
+                        alt="Café Morning Atmosphere">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
             </div>
@@ -242,9 +268,11 @@
                 <div class="reviews-slider" id="reviews-slider">
                     <div class="review-card active">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"Best coffee I've had in the city! The caramel macchiato is rich, perfectly sweet, and the staff makes you feel like family."</p>
+                        <p class="review-text">"Best coffee I've had in the city! The caramel macchiato is rich,
+                            perfectly sweet, and the staff makes you feel like family."</p>
                         <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Sarah M.">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+                                alt="Sarah M.">
                             <div>
                                 <h4>Sarah M.</h4>
                                 <span>Regular Customer</span>
@@ -254,9 +282,11 @@
 
                     <div class="review-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"Beautiful place and amazing atmosphere. Great Wi-Fi and even better croissants. My go-to remote work spot every week."</p>
+                        <p class="review-text">"Beautiful place and amazing atmosphere. Great Wi-Fi and even better
+                            croissants. My go-to remote work spot every week."</p>
                         <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Daniel K.">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                                alt="Daniel K.">
                             <div>
                                 <h4>Daniel K.</h4>
                                 <span>Architect</span>
@@ -266,9 +296,11 @@
 
                     <div class="review-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"The avocado toast and matcha latte combination is incredible! Super fresh ingredients and top-notch aesthetic vibes."</p>
+                        <p class="review-text">"The avocado toast and matcha latte combination is incredible! Super
+                            fresh ingredients and top-notch aesthetic vibes."</p>
                         <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80" alt="Emma W.">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+                                alt="Emma W.">
                             <div>
                                 <h4>Emma W.</h4>
                                 <span>Food Blogger</span>
@@ -358,7 +390,8 @@
                             <textarea id="contact-message" rows="5" placeholder="Your Message..."></textarea>
                             <small class="error-msg"></small>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                        <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-paper-plane"></i> Send
+                            Message</button>
                     </form>
                 </div>
             </div>
@@ -433,7 +466,8 @@
             <div class="summary-line"><span>Delivery Fee:</span><span id="cart-delivery">$2.00</span></div>
             <hr>
             <div class="summary-line total-line"><span>Total:</span><span id="cart-total">$0.00</span></div>
-            <button class="btn btn-primary w-100" id="checkout-btn"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</button>
+            <button class="btn btn-primary w-100" id="checkout-btn"><i class="fa-solid fa-credit-card"></i> Proceed to
+                Checkout</button>
         </div>
     </div>
 
@@ -465,7 +499,7 @@
     <div class="modal" id="checkout-modal">
         <div class="modal-content checkout-modal-content">
             <button class="modal-close" id="close-checkout-modal"><i class="fa-solid fa-xmark"></i></button>
-            
+
             <div id="checkout-step-form">
                 <h2>Checkout Order</h2>
                 <form id="checkout-form">
@@ -479,7 +513,8 @@
                     </div>
                     <div class="form-group">
                         <label>Delivery Address</label>
-                        <textarea id="chk-address" rows="2" placeholder="Street name, Building No..." required></textarea>
+                        <textarea id="chk-address" rows="2" placeholder="Street name, Building No..."
+                            required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Payment Method</label>
@@ -494,7 +529,8 @@
                         <h4>Order Total: <span id="checkout-total-val">$0.00</span></h4>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-check-circle"></i> Confirm Order</button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-check-circle"></i> Confirm
+                        Order</button>
                 </form>
             </div>
 
@@ -536,6 +572,104 @@
     <!-- Toast Container -->
     <div class="toast-container" id="toast-container"></div>
 
+    <!-- ==================== ADMIN LOGIN MODAL ==================== -->
+    <div class="modal" id="admin-login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-admin-login"><i class="fa-solid fa-xmark"></i></button>
+            <h2><i class="fa-solid fa-lock"></i> Admin Portal Login</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Access restriction. Default
+                Key: <strong>admin123</strong></p>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label>Admin Access Passcode</label>
+                    <input type="password" id="admin-pass-input" placeholder="Enter passcode..." required>
+                    <small class="error-msg" id="admin-login-err"></small>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login to Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== ADMIN DASHBOARD MODAL ==================== -->
+    <div class="modal" id="admin-dashboard-modal">
+        <div class="modal-content admin-dashboard-content">
+            <button class="modal-close" id="close-admin-dash"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="admin-header">
+                <h2>☕ Brew & Beans Admin Dashboard</h2>
+                <button class="btn btn-secondary btn-sm" id="admin-logout-btn"><i
+                        class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="orders-tab"><i class="fa-solid fa-receipt"></i> Orders
+                    (<span id="admin-order-count">0</span>)</button>
+                <button class="admin-tab-btn" data-tab="products-tab"><i class="fa-solid fa-mug-saucer"></i> Manage
+                    Products</button>
+            </div>
+
+            <!-- Orders Management Tab -->
+            <div class="admin-tab-content active" id="orders-tab">
+                <h3>Live Customer Orders</h3>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Details</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-list">
+                            <!-- Dynamic Orders -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Product Management Tab -->
+            <div class="admin-tab-content" id="products-tab">
+                <h3>Add New Product</h3>
+                <form id="add-product-form" class="admin-add-form">
+                    <input type="text" id="new-prod-name" placeholder="Item Name" required>
+                    <select id="new-prod-cat" required>
+                        <option value="coffee">Coffee</option>
+                        <option value="tea">Tea</option>
+                        <option value="cake">Cake</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="snacks">Snacks</option>
+                    </select>
+                    <input type="number" step="0.01" id="new-prod-price" placeholder="Price ($)" required>
+                    <input type="url" id="new-prod-img" placeholder="Image URL" required>
+                    <textarea id="new-prod-desc" rows="2" placeholder="Description" required></textarea>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-plus"></i> Add Item to
+                        Menu</button>
+                </form>
+
+                <h3 style="margin-top: 2rem;">Existing Inventory</h3>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-list">
+                            <!-- Dynamic Products -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
