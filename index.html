@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREW & BEANS | Good Coffee. Good Mood. Good Moments.</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==================== LOADING SCREEN ==================== -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader-content">
+            <div class="coffee-cup-icon">☕</div>
+            <h1 class="loader-logo">BREW & BEANS</h1>
+            <p class="loader-text">Brewing your experience...</p>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">☕</span>
+                <span class="logo-text">BREW <span>&</span> BEANS</span>
+            </a>
+
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link active-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="#specials" class="nav-link">Specials</a></li>
+                    <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="#reviews" class="nav-link">Reviews</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-close" id="nav-close"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="fav-btn" title="Favorites">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="fav-count">0</span>
+                </button>
+                <button class="nav-action-btn" id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <button class="nav-action-btn" id="theme-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+                <div class="nav-toggle" id="nav-toggle"><i class="fa-solid fa-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== SEARCH BAR MODAL ==================== -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search coffee, cakes, snacks...">
+            <button id="close-search"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <main class="main">
+        <!-- ==================== HERO SECTION ==================== -->
+        <section class="hero section" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-container container">
+                <div class="hero-data">
+                    <span class="hero-badge"><i class="fa-solid fa-mug-hot"></i> Freshly Brewed Every Day</span>
+                    <h1 class="hero-title">BREW & BEANS</h1>
+                    <p class="hero-subtitle">"Good Coffee. Good Mood. Good Moments."</p>
+                    <p class="hero-description">Experience handcrafted artisanal coffee, freshly baked morning pastries, and a warm cozy atmosphere tailored for coffee enthusiasts.</p>
+                    <div class="hero-buttons">
+                        <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Order Now</a>
+                        <a href="#menu" class="btn btn-secondary"><i class="fa-solid fa-book-open"></i> Explore Menu</a>
+                    </div>
+                </div>
+                <div class="hero-decoration">
+                    <div class="floating-bean bean-1">☕</div>
+                    <div class="floating-bean bean-2">🍃</div>
+                    <div class="floating-bean bean-3">✨</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT SECTION ==================== -->
+        <section class="about section container" id="about">
+            <div class="about-grid">
+                <div class="about-img-wrapper reveal-left">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Brew & Beans Café Interior" class="about-img">
+                    <div class="about-experience-badge">
+                        <span class="exp-num">10+</span>
+                        <span class="exp-text">Years of Coffee Excellence</span>
+                    </div>
+                </div>
+                <div class="about-content reveal-right">
+                    <span class="section-subtitle">Our Story</span>
+                    <h2 class="section-title">Brewing Passion Since 2016</h2>
+                    <p class="about-description">
+                        Founded in the heart of the city, Brew & Beans started with a simple mission: to craft the finest cup of coffee using ethically sourced, single-origin beans. Every batch is freshly roasted to perfection to bring out unique flavor notes.
+                    </p>
+                    <p class="about-description">
+                        Whether you are catching up with friends, getting work done, or enjoying a quiet morning, our warm atmosphere and artisanal menu welcome you.
+                    </p>
+                    <div class="stats-container" id="stats-container">
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="10">0</h3>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="50">0</h3>
+                            <p class="stat-label">Coffee Types</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="20000">0</h3>
+                            <p class="stat-label">Happy Customers</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="4.9" data-decimals="1">0</h3>
+                            <p class="stat-label">Customer Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MENU SECTION ==================== -->
+        <section class="menu section container" id="menu">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Delightful Flavors</span>
+                <h2 class="section-title">Explore Our Menu</h2>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="menu-categories reveal-up">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="coffee">Coffee</button>
+                <button class="category-btn" data-category="tea">Tea</button>
+                <button class="category-btn" data-category="cake">Cake</button>
+                <button class="category-btn" data-category="breakfast">Breakfast</button>
+                <button class="category-btn" data-category="snacks">Snacks</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menu-grid">
+                <!-- Dynamic Items Inserted via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ==================== SPECIAL OFFERS SECTION ==================== -->
+        <section class="specials section" id="specials">
+            <div class="specials-container container reveal-up">
+                <div class="specials-content">
+                    <span class="specials-badge">🔥 TODAY'S SPECIAL OFFER</span>
+                    <h2 class="specials-title">Buy 1 Coffee + Get 1 Cake at 50% OFF</h2>
+                    <p class="specials-desc">Treat yourself today! Order any signature espresso coffee and enjoy 50% discount on any fresh bakery slice.</p>
+                    
+                    <div class="countdown-wrapper">
+                        <p class="countdown-title">Offer Ends In:</p>
+                        <div class="countdown" id="countdown-timer">
+                            <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                            <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                            <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
+                        </div>
+                    </div>
+
+                    <a href="#menu" class="btn btn-gold"><i class="fa-solid fa-fire"></i> Claim Offer Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GALLERY SECTION ==================== -->
+        <section class="gallery section container" id="gallery">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Moments & Vibe</span>
+                <h2 class="section-title">Our Café Gallery</h2>
+            </div>
+
+            <div class="gallery-grid reveal-up">
+                <div class="gallery-item" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Espresso Pouring">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Coffee Cup Barista Art">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cozy Café Seating">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Fresh Bakery Pastries">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="4">
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80" alt="Barista At Work">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="5">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80" alt="Iced Coffee Summer Drink">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="6">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Pour Over Filter Coffee">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="7">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80" alt="Café Morning Atmosphere">
+                    <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="lightbox-prev" id="lightbox-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="lightbox-content">
+                <img src="" alt="" id="lightbox-img">
+            </div>
+            <button class="lightbox-next" id="lightbox-next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- ==================== REVIEWS SECTION ==================== -->
+        <section class="reviews section container" id="reviews">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Testimonials</span>
+                <h2 class="section-title">What Our Guests Say</h2>
+            </div>
+
+            <div class="slider-wrapper reveal-up">
+                <div class="reviews-slider" id="reviews-slider">
+                    <div class="review-card active">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">"Best coffee I've had in the city! The caramel macchiato is rich, perfectly sweet, and the staff makes you feel like family."</p>
+                        <div class="reviewer-info">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Sarah M.">
+                            <div>
+                                <h4>Sarah M.</h4>
+                                <span>Regular Customer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">"Beautiful place and amazing atmosphere. Great Wi-Fi and even better croissants. My go-to remote work spot every week."</p>
+                        <div class="reviewer-info">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Daniel K.">
+                            <div>
+                                <h4>Daniel K.</h4>
+                                <span>Architect</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">"The avocado toast and matcha latte combination is incredible! Super fresh ingredients and top-notch aesthetic vibes."</p>
+                        <div class="reviewer-info">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80" alt="Emma W.">
+                            <div>
+                                <h4>Emma W.</h4>
+                                <span>Food Blogger</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="slider-controls">
+                    <button id="prev-review"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div class="slider-dots" id="slider-dots"></div>
+                    <button id="next-review"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== LOCATION & CONTACT SECTION ==================== -->
+        <section class="contact section container" id="contact">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Get In Touch</span>
+                <h2 class="section-title">Visit Us or Drop a Message</h2>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Info Column -->
+                <div class="contact-info reveal-left">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4>Our Address</h4>
+                            <p>📍 123 Coffee Street, Downtown City</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h4>Phone Number</h4>
+                            <p>📞 +855 12 345 678</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Address</h4>
+                            <p>✉️ hello@brewandbeans.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <p>Monday - Friday: 7:00 AM - 9:00 PM</p>
+                            <p>Saturday - Sunday: 8:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="map-placeholder">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <p>Interactive Map Placeholder</p>
+                        <small>123 Coffee Street, Downtown</small>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="contact-form-wrapper reveal-right">
+                    <form class="contact-form" id="contact-form">
+                        <h3>Send us a Message</h3>
+                        <div class="form-group">
+                            <input type="text" id="contact-name" placeholder="Full Name">
+                            <small class="error-msg"></small>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" placeholder="Email Address">
+                            <small class="error-msg"></small>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contact-phone" placeholder="Phone Number">
+                            <small class="error-msg"></small>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contact-subject" placeholder="Subject">
+                            <small class="error-msg"></small>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contact-message" rows="5" placeholder="Your Message..."></textarea>
+                            <small class="error-msg"></small>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-container container">
+            <div class="footer-col">
+                <a href="#home" class="logo footer-logo">
+                    <span>☕ BREW & BEANS</span>
+                </a>
+                <p>Crafting memorable coffee moments with passion and quality every single day.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#specials">Special Offers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Popular Menu</h4>
+                <ul>
+                    <li><a href="#menu">Caramel Macchiato</a></li>
+                    <li><a href="#menu">Iced Mocha Latte</a></li>
+                    <li><a href="#menu">Strawberry Cream Cake</a></li>
+                    <li><a href="#menu">Avocado Toast</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to receive exclusive coffee deals and updates.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Brew & Beans Café. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ==================== SIDEBARS & MODALS ==================== -->
+
+    <!-- Shopping Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Shopping Cart</h3>
+            <button id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cart-items">
+            <!-- Dynamic Cart Items -->
+        </div>
+        <div class="cart-footer">
+            <div class="summary-line"><span>Subtotal:</span><span id="cart-subtotal">$0.00</span></div>
+            <div class="summary-line"><span>Tax (10%):</span><span id="cart-tax">$0.00</span></div>
+            <div class="summary-line"><span>Delivery Fee:</span><span id="cart-delivery">$2.00</span></div>
+            <hr>
+            <div class="summary-line total-line"><span>Total:</span><span id="cart-total">$0.00</span></div>
+            <button class="btn btn-primary w-100" id="checkout-btn"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Favorites Drawer -->
+    <div class="fav-drawer" id="fav-drawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-heart"></i> Your Favorites</h3>
+            <button id="close-fav"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="fav-items">
+            <!-- Dynamic Favorite Items -->
+        </div>
+    </div>
+
+    <!-- Backdrop Overlay -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Product Customization Modal -->
+    <div class="modal" id="custom-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-custom-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="custom-body" id="custom-body">
+                <!-- Dynamic Customization Form -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content checkout-modal-content">
+            <button class="modal-close" id="close-checkout-modal"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div id="checkout-step-form">
+                <h2>Checkout Order</h2>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="chk-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" id="chk-phone" placeholder="+855 12 345 678" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <textarea id="chk-address" rows="2" placeholder="Street name, Building No..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select id="chk-payment" required>
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="ABA Mobile">ABA Mobile Pay</option>
+                            <option value="Credit Card">Credit Card</option>
+                        </select>
+                    </div>
+
+                    <div class="checkout-summary">
+                        <h4>Order Total: <span id="checkout-total-val">$0.00</span></h4>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-check-circle"></i> Confirm Order</button>
+                </form>
+            </div>
+
+            <!-- Order Tracking State (Hidden Initially) -->
+            <div id="checkout-step-success" class="text-center hidden">
+                <div class="success-icon">🎉</div>
+                <h2>Order Successfully Placed!</h2>
+                <p>Thank you for ordering from <strong>Brew & Beans</strong>.</p>
+                <div class="order-number-badge">Order Number: <span id="order-number-display">#BB1025</span></div>
+
+                <!-- Order Progress Tracker -->
+                <div class="order-tracker">
+                    <div class="tracker-step completed" id="step-received">
+                        <div class="circle">✓</div>
+                        <p>Order Received</p>
+                    </div>
+                    <div class="tracker-step" id="step-preparing">
+                        <div class="circle">☕</div>
+                        <p>Preparing</p>
+                    </div>
+                    <div class="tracker-step" id="step-ready">
+                        <div class="circle">🛍️</div>
+                        <p>Ready</p>
+                    </div>
+                    <div class="tracker-step" id="step-delivered">
+                        <div class="circle">🚀</div>
+                        <p>Delivered</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary mt-2" id="finish-checkout-btn">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
