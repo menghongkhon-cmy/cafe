@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hong Cafe |.</title>
-
-    <!-- Favicon & Search Engine Logo -->
+    <meta name="description"
+        content="Brew & Beans Café — artisan coffee, table ordering, reservations, and cozy dine-in experience.">
+    <title>Brew & Beans | Coffee • Tables • Reservations</title>
     <link rel="icon" type="image/png" sizes="32x32" href="logo.jpg">
     <link rel="apple-touch-icon" href="logo.jpg">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <!-- ==================== LOADING SCREEN ==================== -->
     <div id="loading-screen" class="loading-screen">
         <div class="loader-content">
@@ -34,7 +28,16 @@
             </div>
         </div>
     </div>
-
+    <!-- ==================== DINE-IN TABLE BANNER (QR / table param) ==================== -->
+    <div class="table-banner hidden" id="table-banner">
+        <div class="container table-banner-inner">
+            <span><i class="fa-solid fa-chair"></i> You are ordering from <strong id="banner-table-label">Table —</strong></span>
+            <button type="button" class="table-banner-change" id="change-table-btn">Change table</button>
+            <button type="button" class="table-banner-close" id="close-table-banner" aria-label="Dismiss">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
     <!-- ==================== NAVBAR ==================== -->
     <header class="header" id="header">
         <nav class="navbar container">
@@ -42,21 +45,25 @@
                 <span class="logo-icon">☕</span>
                 <span class="logo-text">BREW <span>&</span> BEANS</span>
             </a>
-
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-list">
                     <li class="nav-item"><a href="#home" class="nav-link active-link">Home</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="#tables" class="nav-link">Tables</a></li>
+                    <li class="nav-item"><a href="#reservations" class="nav-link">Reserve</a></li>
                     <li class="nav-item"><a href="#specials" class="nav-link">Specials</a></li>
                     <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="#reviews" class="nav-link">Reviews</a></li>
+                    <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="nav-close" id="nav-close"><i class="fa-solid fa-xmark"></i></div>
             </div>
-
             <div class="nav-actions">
+                <span class="nav-table-chip hidden" id="nav-table-chip" title="Active table">
+                    <i class="fa-solid fa-chair"></i> <span id="nav-table-num">—</span>
+                </span>
                 <button class="nav-action-btn" id="search-btn" title="Search"><i
                         class="fa-solid fa-magnifying-glass"></i></button>
                 <button class="nav-action-btn" id="fav-btn" title="Favorites">
@@ -67,27 +74,39 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="badge" id="cart-count">0</span>
                 </button>
+                <button class="nav-action-btn" id="waitlist-btn" title="Join Waitlist"><i
+                        class="fa-solid fa-clock"></i></button>
                 <button class="nav-action-btn" id="theme-btn" title="Toggle Theme"><i
                         class="fa-solid fa-moon"></i></button>
                 <div class="nav-toggle" id="nav-toggle"><i class="fa-solid fa-bars"></i></div>
-
                 <button class="nav-action-btn" id="admin-login-btn" title="Admin Portal">
                     <i class="fa-solid fa-user-shield"></i>
                 </button>
             </div>
         </nav>
     </header>
-
-    <!-- ==================== SEARCH BAR MODAL ==================== -->
+    <!-- ==================== SEARCH MODAL ==================== -->
     <div class="search-modal" id="search-modal">
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search coffee, cakes, snacks...">
+            <input type="text" id="search-input" placeholder="Search coffee, cakes, tables, events...">
             <button id="close-search"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        <div class="search-suggestions container" id="search-suggestions">
+            <p class="search-hint">Try: "Table 5", "Caramel Macchiato", "Reserve Saturday"</p>
+        </div>
     </div>
-
+    <!-- ==================== OCCUPANCY STRIP ==================== -->
+    <div class="occupancy-strip" id="occupancy-strip">
+        <div class="container occupancy-strip-inner">
+            <span><i class="fa-solid fa-store"></i> <strong id="tables-available-count">12</strong> tables available now</span>
+            <span class="occupancy-divider">|</span>
+            <span><i class="fa-solid fa-hourglass-half"></i> Est. wait: <strong id="est-wait-time">~5 min</strong></span>
+            <span class="occupancy-divider">|</span>
+            <a href="#reservations" class="occupancy-link">Book ahead <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
     <main class="main">
-        <!-- ==================== HERO SECTION ==================== -->
+        <!-- ==================== HERO ==================== -->
         <section class="hero section" id="home">
             <div class="hero-overlay"></div>
             <div class="hero-container container">
@@ -95,11 +114,39 @@
                     <span class="hero-badge"><i class="fa-solid fa-mug-hot"></i> Freshly Brewed Every Day</span>
                     <h1 class="hero-title">BREW & BEANS</h1>
                     <p class="hero-subtitle">"Good Coffee. Good Mood. Good Moments."</p>
-                    <p class="hero-description">Experience handcrafted artisanal coffee, freshly baked morning pastries,
-                        and a warm cozy atmosphere tailored for coffee enthusiasts.</p>
+                    <p class="hero-description">
+                        Handcrafted coffee, fresh pastries, and table-side ordering.
+                        Scan the QR at your table or pick a seat from our live floor plan.
+                    </p>
+                    <div class="hero-order-type">
+                        <p class="hero-order-type-label">How are you visiting today?</p>
+                        <div class="order-type-toggle hero-toggle">
+                            <button type="button" class="order-type-btn active" data-type="dine-in">
+                                <i class="fa-solid fa-chair"></i> Dine-In
+                            </button>
+                            <button type="button" class="order-type-btn" data-type="takeaway">
+                                <i class="fa-solid fa-bag-shopping"></i> Takeaway
+                            </button>
+                            <button type="button" class="order-type-btn" data-type="delivery">
+                                <i class="fa-solid fa-motorcycle"></i> Delivery
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-table-quick" id="hero-table-quick">
+                        <label for="hero-table-select">Your table number</label>
+                        <div class="hero-table-row">
+                            <select id="hero-table-select" aria-label="Select table number">
+                                <option value="">Select table</option>
+                            </select>
+                            <button type="button" class="btn btn-secondary btn-sm" id="scan-table-btn">
+                                <i class="fa-solid fa-qrcode"></i> Scan QR
+                            </button>
+                        </div>
+                    </div>
                     <div class="hero-buttons">
                         <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Order Now</a>
-                        <a href="#menu" class="btn btn-secondary"><i class="fa-solid fa-book-open"></i> Explore Menu</a>
+                        <a href="#tables" class="btn btn-secondary"><i class="fa-solid fa-map"></i> View Tables</a>
+                        <a href="#reservations" class="btn btn-gold"><i class="fa-solid fa-calendar-check"></i> Reserve</a>
                     </div>
                 </div>
                 <div class="hero-decoration">
@@ -109,8 +156,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- ==================== ABOUT SECTION ==================== -->
+        <!-- ==================== ABOUT ==================== -->
         <section class="about section container" id="about">
             <div class="about-grid">
                 <div class="about-img-wrapper reveal-left">
@@ -125,13 +171,11 @@
                     <span class="section-subtitle">Our Story</span>
                     <h2 class="section-title">Brewing Passion Since 2016</h2>
                     <p class="about-description">
-                        Founded in the heart of the city, Brew & Beans started with a simple mission: to craft the
-                        finest cup of coffee using ethically sourced, single-origin beans. Every batch is freshly
-                        roasted to perfection to bring out unique flavor notes.
+                        Founded in the heart of the city, Brew & Beans crafts single-origin coffee in a warm,
+                        work-friendly space with <strong>20 numbered tables</strong>, window seating, and a quiet reading nook.
                     </p>
                     <p class="about-description">
-                        Whether you are catching up with friends, getting work done, or enjoying a quiet morning, our
-                        warm atmosphere and artisanal menu welcome you.
+                        Order from your phone at the table, call a barista with one tap, or book ahead for groups of 4+.
                     </p>
                     <div class="stats-container" id="stats-container">
                         <div class="stat-card">
@@ -139,8 +183,8 @@
                             <p class="stat-label">Years Experience</p>
                         </div>
                         <div class="stat-card">
-                            <h3 class="stat-number" data-target="50">0</h3>
-                            <p class="stat-label">Coffee Types</p>
+                            <h3 class="stat-number" data-target="20">0</h3>
+                            <p class="stat-label">Café Tables</p>
                         </div>
                         <div class="stat-card">
                             <h3 class="stat-number" data-target="20000">0</h3>
@@ -154,15 +198,85 @@
                 </div>
             </div>
         </section>
-
-        <!-- ==================== MENU SECTION ==================== -->
+        <!-- ==================== TABLES & FLOOR PLAN ==================== -->
+        <section class="tables section" id="tables">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <span class="section-subtitle">Dine With Us</span>
+                    <h2 class="section-title">Live Table Availability</h2>
+                    <p class="section-desc">Green = available · Red = occupied · Gold = reserved · Gray = cleaning</p>
+                </div>
+                <div class="tables-legend reveal-up">
+                    <span class="legend-item legend-available"><i class="fa-solid fa-circle"></i> Available</span>
+                    <span class="legend-item legend-occupied"><i class="fa-solid fa-circle"></i> Occupied</span>
+                    <span class="legend-item legend-reserved"><i class="fa-solid fa-circle"></i> Reserved</span>
+                    <span class="legend-item legend-cleaning"><i class="fa-solid fa-circle"></i> Needs cleaning</span>
+                </div>
+                <div class="floor-plan reveal-up" id="floor-plan" aria-label="Café floor plan">
+                    <!-- Row 1: window booths T01–T05 -->
+                    <div class="floor-row floor-row-window">
+                        <div class="floor-zone-label">Window Booths</div>
+                        <button type="button" class="table-seat available" data-table="1" data-capacity="2">T01<span>2 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="2" data-capacity="2">T02<span>2 seats</span></button>
+                        <button type="button" class="table-seat occupied" data-table="3" data-capacity="2">T03<span>2 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="4" data-capacity="2">T04<span>2 seats</span></button>
+                        <button type="button" class="table-seat reserved" data-table="5" data-capacity="2">T05<span>2 seats</span></button>
+                    </div>
+                    <!-- Row 2: center T06–T10 -->
+                    <div class="floor-row floor-row-center">
+                        <div class="floor-zone-label">Main Floor</div>
+                        <button type="button" class="table-seat available" data-table="6" data-capacity="4">T06<span>4 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="7" data-capacity="4">T07<span>4 seats</span></button>
+                        <button type="button" class="table-seat occupied" data-table="8" data-capacity="4">T08<span>4 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="9" data-capacity="4">T09<span>4 seats</span></button>
+                        <button type="button" class="table-seat cleaning" data-table="10" data-capacity="4">T10<span>4 seats</span></button>
+                    </div>
+                    <!-- Row 3: bar side T11–T15 -->
+                    <div class="floor-row floor-row-bar">
+                        <div class="floor-zone-label">Bar Side</div>
+                        <button type="button" class="table-seat available" data-table="11" data-capacity="2">T11<span>2 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="12" data-capacity="2">T12<span>2 seats</span></button>
+                        <button type="button" class="table-seat occupied" data-table="13" data-capacity="2">T13<span>2 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="14" data-capacity="2">T14<span>2 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="15" data-capacity="2">T15<span>2 seats</span></button>
+                    </div>
+                    <!-- Row 4: garden T16–T20 -->
+                    <div class="floor-row floor-row-garden">
+                        <div class="floor-zone-label">Garden Patio</div>
+                        <button type="button" class="table-seat available" data-table="16" data-capacity="6">T16<span>6 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="17" data-capacity="6">T17<span>6 seats</span></button>
+                        <button type="button" class="table-seat reserved" data-table="18" data-capacity="6">T18<span>6 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="19" data-capacity="4">T19<span>4 seats</span></button>
+                        <button type="button" class="table-seat available" data-table="20" data-capacity="4">T20<span>4 seats</span></button>
+                    </div>
+                </div>
+                <div class="table-actions reveal-up">
+                    <button type="button" class="btn btn-primary" id="select-table-order-btn" disabled>
+                        <i class="fa-solid fa-chair"></i> Select a table to order
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="open-waitlist-from-floor">
+                        <i class="fa-solid fa-list"></i> Join waitlist
+                    </button>
+                </div>
+                <div class="table-info-panel hidden" id="table-info-panel">
+                    <h3 id="table-info-title">Table T—</h3>
+                    <p id="table-info-status">Status: —</p>
+                    <p id="table-info-capacity">Capacity: — guests</p>
+                    <p id="table-info-zone">Zone: —</p>
+                    <div class="table-info-actions">
+                        <button type="button" class="btn btn-primary btn-sm" id="order-at-table-btn">Order at this table</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="reserve-this-table-btn">Reserve this table</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== MENU ==================== -->
         <section class="menu section container" id="menu">
             <div class="section-header text-center reveal-up">
                 <span class="section-subtitle">Delightful Flavors</span>
                 <h2 class="section-title">Explore Our Menu</h2>
+                <p class="section-desc" id="menu-table-context">Order for dine-in, takeaway, or delivery</p>
             </div>
-
-            <!-- Category Filters -->
             <div class="menu-categories reveal-up">
                 <button class="category-btn active" data-category="all">All</button>
                 <button class="category-btn" data-category="coffee">Coffee</button>
@@ -171,22 +285,114 @@
                 <button class="category-btn" data-category="breakfast">Breakfast</button>
                 <button class="category-btn" data-category="snacks">Snacks</button>
             </div>
-
-            <!-- Menu Grid -->
-            <div class="menu-grid" id="menu-grid">
-                <!-- Dynamic Items Inserted via JavaScript -->
+            <div class="menu-grid" id="menu-grid"></div>
+            <!-- Fallback static cards if JS disabled -->
+            <noscript>
+                <div class="menu-grid menu-grid-static">
+                    <article class="menu-card">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" alt="Espresso">
+                        <h3>Espresso</h3>
+                        <p>Rich single shot</p>
+                        <span>$2.50</span>
+                    </article>
+                    <article class="menu-card">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400" alt="Latte">
+                        <h3>Caramel Macchiato</h3>
+                        <p>Velvet steamed milk</p>
+                        <span>$4.50</span>
+                    </article>
+                </div>
+            </noscript>
+        </section>
+        <!-- ==================== RESERVATIONS ==================== -->
+        <section class="reservations section" id="reservations">
+            <div class="container reservations-container reveal-up">
+                <div class="reservations-grid">
+                    <div class="reservations-content">
+                        <span class="section-subtitle">Plan Ahead</span>
+                        <h2 class="section-title">Reserve Your Table</h2>
+                        <p>Book for dates, birthdays, or remote-work mornings. Tables held for 15 minutes past reservation time.</p>
+                        <ul class="reservation-perks">
+                            <li><i class="fa-solid fa-check"></i> Tables T06–T10 for groups up to 4</li>
+                            <li><i class="fa-solid fa-check"></i> Garden tables T16–T18 for parties up to 6</li>
+                            <li><i class="fa-solid fa-check"></i> Pre-order coffee ready on arrival</li>
+                            <li><i class="fa-solid fa-check"></i> Free refill on filter coffee for bookings 2hr+</li>
+                        </ul>
+                    </div>
+                    <form class="reservation-form" id="reservation-form">
+                        <h3>Booking Details</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="res-name">Full Name</label>
+                                <input type="text" id="res-name" placeholder="Your name" required>
+                                <small class="error-msg"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="res-phone">Phone</label>
+                                <input type="tel" id="res-phone" placeholder="+855 12 345 678" required>
+                                <small class="error-msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="res-date">Date</label>
+                                <input type="date" id="res-date" required>
+                                <small class="error-msg"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="res-time">Time</label>
+                                <input type="time" id="res-time" required>
+                                <small class="error-msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="res-guests">Guests</label>
+                                <select id="res-guests" required>
+                                    <option value="">Party size</option>
+                                    <option value="1">1 guest</option>
+                                    <option value="2">2 guests</option>
+                                    <option value="3">3 guests</option>
+                                    <option value="4">4 guests</option>
+                                    <option value="5">5 guests</option>
+                                    <option value="6">6 guests</option>
+                                </select>
+                                <small class="error-msg"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="res-table-pref">Preferred table</label>
+                                <select id="res-table-pref">
+                                    <option value="any">Any available</option>
+                                    <option value="window">Window booth</option>
+                                    <option value="main">Main floor</option>
+                                    <option value="bar">Bar side</option>
+                                    <option value="garden">Garden patio</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="res-notes">Special requests</label>
+                            <textarea id="res-notes" rows="3" placeholder="High chair, quiet corner, celebration..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="res-preorder"> Pre-order drinks for arrival
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fa-solid fa-calendar-check"></i> Confirm Reservation
+                        </button>
+                    </form>
+                </div>
             </div>
         </section>
-
-        <!-- ==================== SPECIAL OFFERS SECTION ==================== -->
+        <!-- ==================== SPECIALS ==================== -->
         <section class="specials section" id="specials">
             <div class="specials-container container reveal-up">
                 <div class="specials-content">
                     <span class="specials-badge">🔥 TODAY'S SPECIAL OFFER</span>
                     <h2 class="specials-title">Buy 1 Coffee + Get 1 Cake at 50% OFF</h2>
-                    <p class="specials-desc">Treat yourself today! Order any signature espresso coffee and enjoy 50%
-                        discount on any fresh bakery slice.</p>
-
+                    <p class="specials-desc">Valid for dine-in tables T01–T20 and takeaway. Scan your table QR to auto-apply.</p>
                     <div class="countdown-wrapper">
                         <p class="countdown-title">Offer Ends In:</p>
                         <div class="countdown" id="countdown-timer">
@@ -195,64 +401,563 @@
                             <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
                         </div>
                     </div>
-
                     <a href="#menu" class="btn btn-gold"><i class="fa-solid fa-fire"></i> Claim Offer Now</a>
                 </div>
             </div>
         </section>
+        <!-- ==================== TEAM ==================== -->
+        <section class="team section container" id="team">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Meet the Baristas</span>
+                <h2 class="section-title">Our Coffee Team</h2>
+            </div>
+            <div class="team-grid reveal-up">
+                <article class="team-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="Head Barista">
+                    <h3>Daniel K.</h3>
+                    <span>Head Barista · Latte Art</span>
+                </article>
+                <article class="team-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300" alt="Roast Specialist">
+                    <h3>Sarah M.</h3>
+                    <span>Roast Specialist</span>
+                </article>
+                <article class="team-card">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300" alt="Pastry Chef">
+                    <h3>Emma W.</h3>
+                    <span>Pastry Chef</span>
+                </article>
+                <article class="team-card">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300" alt="Floor Manager">
+                    <h3>James L.</h3>
+                    <span>Floor & Tables Manager</span>
+                </article>
+            </div>
+        </section>
+        <!-- ==================== EVENTS ==================== -->
+        <section class="events section" id="events">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <span class="section-subtitle">What's On</span>
+                    <h2 class="section-title">Events & Workshops</h2>
+                </div>
+                <div class="events-grid reveal-up">
+                    <article class="event-card">
+                        <span class="event-date">Sat · 10:00 AM</span>
+                        <h3>Pour-Over Workshop</h3>
+                        <p>Learn V60 technique · Tables T16–T17 reserved</p>
+                        <a href="#contact" class="btn btn-secondary btn-sm">RSVP</a>
+                    </article>
+                    <article class="event-card">
+                        <span class="event-date">Sun · 3:00 PM</span>
+                        <h3>Acoustic Sunday</h3>
+                        <p>Live music · Garden tables recommended</p>
+                        <a href="#reservations" class="btn btn-secondary btn-sm">Book table</a>
+                    </article>
+                    <article class="event-card">
+                        <span class="event-date">Wed · 7:00 PM</span>
+                        <h3>Cupping Night</h3>
+                        <p>Single-origin tasting flight</p>
+                        <a href="#contact" class="btn btn-secondary btn-sm">Join waitlist</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== LOYALTY ==================== -->
+        <section class="loyalty section container" id="loyalty">
+            <div class="loyalty-card reveal-up">
+                <div class="loyalty-text">
+                    <span class="section-subtitle">Rewards</span>
+                    <h2 class="section-title">Beans Club</h2>
+                    <p>Earn 1 stamp per visit. Dine-in at any table counts double on Tuesdays.</p>
+                </div>
+                <div class="loyalty-stamps">
+                    <span class="stamp filled">☕</span>
+                    <span class="stamp filled">☕</span>
+                    <span class="stamp filled">☕</span>
+                    <span class="stamp">☕</span>
+                    <span class="stamp">☕</span>
+                    <span class="stamp">☕</span>
+                    <span class="stamp">☕</span
 
-        <!-- ==================== GALLERY SECTION ==================== -->
+
+
+
+You're in Ask mode, so I can't create files on disk. Below is a full ~1000-line HTML you can save as index.html. It builds on your Brew & Beans site and adds table numbers, reservations, waitlist, QR table ordering, and an expanded admin dashboard.
+
+Switch to Agent mode if you want this written directly into your project.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Brew & Beans Café — artisan coffee, table service, reservations, and online ordering.">
+    <title>Brew & Beans | Coffee Café & Table Service</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.jpg">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== LOADING SCREEN ==================== -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader-content">
+            <div class="coffee-cup-icon">☕</div>
+            <h1 class="loader-logo">BREW & BEANS</h1>
+            <p class="loader-text">Brewing your experience...</p>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ==================== TABLE QR BANNER (shown when ?table=X) ==================== -->
+    <div class="table-qr-banner hidden" id="table-qr-banner">
+        <div class="container table-banner-inner">
+            <span><i class="fa-solid fa-chair"></i> You are ordering from <strong id="banner-table-label">Table 1</strong></span>
+            <button class="table-banner-close" id="close-table-banner" aria-label="Dismiss">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">☕</span>
+                <span class="logo-text">BREW <span>&</span> BEANS</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link active-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="#tables" class="nav-link">Tables</a></li>
+                    <li class="nav-item"><a href="#reservations" class="nav-link">Reserve</a></li>
+                    <li class="nav-item"><a href="#specials" class="nav-link">Specials</a></li>
+                    <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="#reviews" class="nav-link">Reviews</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-close" id="nav-close"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div class="nav-actions">
+                <span class="nav-table-badge hidden" id="nav-table-badge" title="Your table">
+                    <i class="fa-solid fa-chair"></i> <span id="nav-table-num">—</span>
+                </span>
+                <button class="nav-action-btn" id="search-btn" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button class="nav-action-btn" id="fav-btn" title="Favorites">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="fav-count">0</span>
+                </button>
+                <button class="nav-action-btn" id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <button class="nav-action-btn" id="waiter-btn" title="Call Waiter">
+                    <i class="fa-solid fa-bell-concierge"></i>
+                </button>
+                <button class="nav-action-btn" id="theme-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="nav-toggle" id="nav-toggle"><i class="fa-solid fa-bars"></i></div>
+                <button class="nav-action-btn" id="admin-login-btn" title="Admin Portal">
+                    <i class="fa-solid fa-user-shield"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!-- ==================== SEARCH MODAL ==================== -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search coffee, cakes, snacks, tables...">
+            <button id="close-search"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results" id="search-results"></div>
+    </div>
+    <main class="main">
+        <!-- ==================== HERO ==================== -->
+        <section class="hero section" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-container container">
+                <div class="hero-data">
+                    <span class="hero-badge"><i class="fa-solid fa-mug-hot"></i> Freshly Brewed Every Day</span>
+                    <h1 class="hero-title">BREW & BEANS</h1>
+                    <p class="hero-subtitle">"Good Coffee. Good Mood. Good Moments."</p>
+                    <p class="hero-description">
+                        Experience handcrafted artisanal coffee, freshly baked pastries, and cozy table service.
+                        Scan your table QR code or pick a seat — we bring everything to you.
+                    </p>
+                    <!-- Live occupancy strip -->
+                    <div class="occupancy-strip" id="occupancy-strip">
+                        <div class="occ-item">
+                            <i class="fa-solid fa-chair"></i>
+                            <span><strong id="tables-available">12</strong> / <span id="tables-total">20</span> tables free</span>
+                        </div>
+                        <div class="occ-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Avg. wait: <strong id="avg-wait">~8</strong> min</span>
+                        </div>
+                        <div class="occ-item">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Waitlist: <strong id="waitlist-count-display">0</strong></span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Order Now</a>
+                        <a href="#reservations" class="btn btn-secondary"><i class="fa-solid fa-calendar-check"></i> Book a Table</a>
+                        <button class="btn btn-outline" id="hero-scan-table-btn"><i class="fa-solid fa-qrcode"></i> Enter Table #</button>
+                    </div>
+                </div>
+                <div class="hero-decoration">
+                    <div class="floating-bean bean-1">☕</div>
+                    <div class="floating-bean bean-2">🍃</div>
+                    <div class="floating-bean bean-3">✨</div>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== ABOUT ==================== -->
+        <section class="about section container" id="about">
+            <div class="about-grid">
+                <div class="about-img-wrapper reveal-left">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80"
+                        alt="Brew & Beans Café Interior" class="about-img">
+                    <div class="about-experience-badge">
+                        <span class="exp-num">10+</span>
+                        <span class="exp-text">Years of Coffee Excellence</span>
+                    </div>
+                </div>
+                <div class="about-content reveal-right">
+                    <span class="section-subtitle">Our Story</span>
+                    <h2 class="section-title">Brewing Passion Since 2016</h2>
+                    <p class="about-description">
+                        Founded in the heart of the city, Brew & Beans started with a simple mission: craft the finest
+                        cup using ethically sourced, single-origin beans. Every batch is freshly roasted to perfection.
+                    </p>
+                    <p class="about-description">
+                        With 20 thoughtfully arranged tables — from intimate two-seaters to group booths — we welcome
+                        remote workers, dates, families, and coffee lovers alike.
+                    </p>
+                    <div class="stats-container" id="stats-container">
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="10">0</h3>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="50">0</h3>
+                            <p class="stat-label">Coffee Types</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="20">0</h3>
+                            <p class="stat-label">Café Tables</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number" data-target="4.9" data-decimals="1">0</h3>
+                            <p class="stat-label">Customer Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== MENU ==================== -->
+        <section class="menu section container" id="menu">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Delightful Flavors</span>
+                <h2 class="section-title">Explore Our Menu</h2>
+                <p class="section-desc">Order for dine-in, takeaway, or delivery. Dine-in orders are served at your table.</p>
+            </div>
+            <div class="order-type-bar reveal-up">
+                <span class="order-type-label">Ordering as:</span>
+                <button class="order-type-chip active" data-order-type="dine-in"><i class="fa-solid fa-chair"></i> Dine-In</button>
+                <button class="order-type-chip" data-order-type="takeaway"><i class="fa-solid fa-bag-shopping"></i> Takeaway</button>
+                <button class="order-type-chip" data-order-type="delivery"><i class="fa-solid fa-motorcycle"></i> Delivery</button>
+            </div>
+            <div class="menu-categories reveal-up">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="coffee">Coffee</button>
+                <button class="category-btn" data-category="tea">Tea</button>
+                <button class="category-btn" data-category="cake">Cake</button>
+                <button class="category-btn" data-category="breakfast">Breakfast</button>
+                <button class="category-btn" data-category="snacks">Snacks</button>
+            </div>
+            <div class="menu-grid" id="menu-grid"></div>
+        </section>
+        <!-- ==================== TABLES & FLOOR PLAN ==================== -->
+        <section class="tables section" id="tables">
+            <div class="tables-container container">
+                <div class="section-header text-center reveal-up">
+                    <span class="section-subtitle">Dine With Us</span>
+                    <h2 class="section-title">Choose Your Table</h2>
+                    <p class="section-desc">Tap a free table to start ordering, or scan the QR code on your table card.</p>
+                </div>
+                <div class="tables-layout reveal-up">
+                    <!-- Legend -->
+                    <div class="table-legend">
+                        <span class="legend-item available"><i class="fa-solid fa-circle"></i> Available</span>
+                        <span class="legend-item occupied"><i class="fa-solid fa-circle"></i> Occupied</span>
+                        <span class="legend-item reserved"><i class="fa-solid fa-circle"></i> Reserved</span>
+                        <span class="legend-item cleaning"><i class="fa-solid fa-circle"></i> Cleaning</span>
+                    </div>
+                    <!-- Floor zones -->
+                    <div class="floor-zones">
+                        <div class="floor-zone">
+                            <h4><i class="fa-solid fa-sun"></i> Window Side — Cozy 2-Seaters</h4>
+                            <div class="floor-grid" id="floor-grid-window">
+                                <button class="table-seat" data-table="1" data-capacity="2" data-zone="window">T-01</button>
+                                <button class="table-seat" data-table="2" data-capacity="2" data-zone="window">T-02</button>
+                                <button class="table-seat" data-table="3" data-capacity="2" data-zone="window">T-03</button>
+                                <button class="table-seat" data-table="4" data-capacity="2" data-zone="window">T-04</button>
+                                <button class="table-seat" data-table="5" data-capacity="2" data-zone="window">T-05</button>
+                            </div>
+                        </div>
+                        <div class="floor-zone">
+                            <h4><i class="fa-solid fa-laptop"></i> Work Zone — Quiet 2-Seaters</h4>
+                            <div class="floor-grid" id="floor-grid-work">
+                                <button class="table-seat" data-table="6" data-capacity="2" data-zone="work">T-06</button>
+                                <button class="table-seat" data-table="7" data-capacity="2" data-zone="work">T-07</button>
+                                <button class="table-seat" data-table="8" data-capacity="2" data-zone="work">T-08</button>
+                                <button class="table-seat" data-table="9" data-capacity="2" data-zone="work">T-09</button>
+                                <button class="table-seat" data-table="10" data-capacity="2" data-zone="work">T-10</button>
+                            </div>
+                        </div>
+                        <div class="floor-zone">
+                            <h4><i class="fa-solid fa-users"></i> Group Booths — 4-6 Seats</h4>
+                            <div class="floor-grid floor-grid-large" id="floor-grid-group">
+                                <button class="table-seat large" data-table="11" data-capacity="4" data-zone="booth">T-11</button>
+                                <button class="table-seat large" data-table="12" data-capacity="4" data-zone="booth">T-12</button>
+                                <button class="table-seat large" data-table="13" data-capacity="4" data-zone="booth">T-13</button>
+                                <button class="table-seat large" data-table="14" data-capacity="6" data-zone="booth">T-14</button>
+                                <button class="table-seat large" data-table="15" data-capacity="6" data-zone="booth">T-15</button>
+                            </div>
+                        </div>
+                        <div class="floor-zone">
+                            <h4><i class="fa-solid fa-tree"></i> Garden Patio — Outdoor</h4>
+                            <div class="floor-grid" id="floor-grid-patio">
+                                <button class="table-seat" data-table="16" data-capacity="2" data-zone="patio">T-16</button>
+                                <button class="table-seat" data-table="17" data-capacity="2" data-zone="patio">T-17</button>
+                                <button class="table-seat" data-table="18" data-capacity="4" data-zone="patio">T-18</button>
+                                <button class="table-seat" data-table="19" data-capacity="4" data-zone="patio">T-19</button>
+                                <button class="table-seat large" data-table="20" data-capacity="8" data-zone="patio">T-20</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Selected table info panel -->
+                    <div class="table-info-panel" id="table-info-panel">
+                        <div class="table-info-empty" id="table-info-empty">
+                            <i class="fa-solid fa-hand-pointer"></i>
+                            <p>Select an available table to begin dine-in ordering</p>
+                        </div>
+                        <div class="table-info-selected hidden" id="table-info-selected">
+                            <h3>Table <span id="selected-table-num">—</span></h3>
+                            <ul class="table-meta-list">
+                                <li><i class="fa-solid fa-users"></i> Capacity: <span id="selected-table-capacity">2</span> guests</li>
+                                <li><i class="fa-solid fa-map-pin"></i> Zone: <span id="selected-table-zone">Window</span></li>
+                                <li><i class="fa-solid fa-circle-check"></i> Status: <span id="selected-table-status">Available</span></li>
+                            </ul>
+                            <div class="table-info-actions">
+                                <button class="btn btn-primary" id="confirm-table-btn"><i class="fa-solid fa-check"></i> Use This Table</button>
+                                <a href="#menu" class="btn btn-secondary"><i class="fa-solid fa-utensils"></i> Browse Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== RESERVATIONS ==================== -->
+        <section class="reservations section container" id="reservations">
+            <div class="reservations-grid">
+                <div class="reservations-content reveal-left">
+                    <span class="section-subtitle">Plan Ahead</span>
+                    <h2 class="section-title">Reserve Your Table</h2>
+                    <p class="section-desc">
+                        Book ahead for weekends, group gatherings, or date nights. We'll hold your table for 15 minutes
+                        after your reservation time.
+                    </p>
+                    <ul class="reservation-perks">
+                        <li><i class="fa-solid fa-check"></i> Preferred seating (window, quiet, patio)</li>
+                        <li><i class="fa-solid fa-check"></i> Pre-order drinks ready on arrival</li>
+                        <li><i class="fa-solid fa-check"></i> Birthday & celebration setups available</li>
+                        <li><i class="fa-solid fa-check"></i> Free cancellation up to 2 hours before</li>
+                    </ul>
+                    <div class="reservation-hours-card">
+                        <h4><i class="fa-solid fa-clock"></i> Reservation Hours</h4>
+                        <p>Mon–Fri: 8:00 AM – 8:00 PM</p>
+                        <p>Sat–Sun: 9:00 AM – 9:00 PM</p>
+                    </div>
+                </div>
+                <div class="reservations-form-wrapper reveal-right">
+                    <form class="reservation-form" id="reservation-form">
+                        <h3><i class="fa-solid fa-calendar-days"></i> Book a Table</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="res-name">Full Name</label>
+                                <input type="text" id="res-name" placeholder="Your name" required>
+                                <small class="error-msg"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="res-phone">Phone Number</label>
+                                <input type="tel" id="res-phone" placeholder="+855 12 345 678" required>
+                                <small class="error-msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="res-date">Date</label>
+                                <input type="date" id="res-date" required>
+                                <small class="error-msg"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="res-time">Time</label>
+                                <input type="time" id="res-time" required>
+                                <small class="error-msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="res-guests">Party Size</label>
+                                <select id="res-guests" required>
+                                    <option value="">Select guests</option>
+                                    <option value="1">1 guest</option>
+                                    <option value="2">2 guests</option>
+                                    <option value="3">3 guests</option>
+                                    <option value="4">4 guests</option>
+                                    <option value="5">5 guests</option>
+                                    <option value="6">6 guests</option>
+                                    <option value="7">7 guests</option>
+                                    <option value="8">8+ guests</option>
+                                </select>
+                                <small class="error-msg"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="res-zone">Preferred Zone</label>
+                                <select id="res-zone" required>
+                                    <option value="any">Any available</option>
+                                    <option value="window">Window Side</option>
+                                    <option value="work">Work Zone</option>
+                                    <option value="booth">Group Booth</option>
+                                    <option value="patio">Garden Patio</option>
+                                </select>
+                                <small class="error-msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="res-notes">Special Requests</label>
+                            <textarea id="res-notes" rows="3" placeholder="High chair, birthday cake, quiet corner..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="res-preorder">
+                                Pre-order drinks (ready when you arrive)
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fa-solid fa-calendar-check"></i> Confirm Reservation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== WAITLIST ==================== -->
+        <section class="waitlist section" id="waitlist">
+            <div class="waitlist-container container reveal-up">
+                <div class="waitlist-card">
+                    <div class="waitlist-text">
+                        <span class="section-subtitle">All Tables Full?</span>
+                        <h2 class="section-title">Join the Waitlist</h2>
+                        <p>Get notified when your table is ready. Average wait time updates live.</p>
+                    </div>
+                    <form class="waitlist-form" id="waitlist-form">
+                        <input type="text" id="wl-name" placeholder="Your name" required>
+                        <input type="tel" id="wl-phone" placeholder="Phone number" required>
+                        <select id="wl-guests" required>
+                            <option value="">Party size</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                        <button type="submit" class="btn btn-gold"><i class="fa-solid fa-hourglass-half"></i> Join Waitlist</button>
+                    </form>
+                </div>
+                <div class="waitlist-status" id="waitlist-status-panel">
+                    <h4>Current Queue</h4>
+                    <ol class="waitlist-queue" id="waitlist-queue">
+                        <li class="waitlist-empty">No one waiting — tables available!</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== SPECIALS ==================== -->
+        <section class="specials section" id="specials">
+            <div class="specials-container container reveal-up">
+                <div class="specials-content">
+                    <span class="specials-badge">🔥 TODAY'S SPECIAL OFFER</span>
+                    <h2 class="specials-title">Buy 1 Coffee + Get 1 Cake at 50% OFF</h2>
+                    <p class="specials-desc">
+                        Valid for dine-in and takeaway. Show your table number at checkout to redeem.
+                    </p>
+                    <div class="countdown-wrapper">
+                        <p class="countdown-title">Offer Ends In:</p>
+                        <div class="countdown" id="countdown-timer">
+                            <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                            <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                            <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
+                        </div>
+                    </div>
+                    <a href="#menu" class="btn btn-gold"><i class="fa-solid fa-fire"></i> Claim Offer Now</a>
+                </div>
+            </div>
+        </section>
+        <!-- ==================== GALLERY ==================== -->
         <section class="gallery section container" id="gallery">
             <div class="section-header text-center reveal-up">
                 <span class="section-subtitle">Moments & Vibe</span>
                 <h2 class="section-title">Our Café Gallery</h2>
             </div>
-
             <div class="gallery-grid reveal-up">
                 <div class="gallery-item" data-index="0">
-                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80"
-                        alt="Espresso Pouring">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Espresso Pouring">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="1">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
-                        alt="Coffee Cup Barista Art">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Latte Art">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="2">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80"
-                        alt="Cozy Café Seating">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cozy Seating">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="3">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80"
-                        alt="Fresh Bakery Pastries">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Fresh Pastries">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="4">
-                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80"
-                        alt="Barista At Work">
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80" alt="Barista">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="5">
-                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80"
-                        alt="Iced Coffee Summer Drink">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80" alt="Iced Coffee">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="6">
-                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
-                        alt="Pour Over Filter Coffee">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Pour Over">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="7">
-                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"
-                        alt="Café Morning Atmosphere">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80" alt="Morning Atmosphere">
                     <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
                 </div>
             </div>
         </section>
-
-        <!-- Gallery Lightbox Modal -->
         <div class="lightbox" id="lightbox">
             <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
             <button class="lightbox-prev" id="lightbox-prev"><i class="fa-solid fa-chevron-left"></i></button>
@@ -261,60 +966,39 @@
             </div>
             <button class="lightbox-next" id="lightbox-next"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
-
-        <!-- ==================== REVIEWS SECTION ==================== -->
+        <!-- ==================== REVIEWS ==================== -->
         <section class="reviews section container" id="reviews">
             <div class="section-header text-center reveal-up">
                 <span class="section-subtitle">Testimonials</span>
                 <h2 class="section-title">What Our Guests Say</h2>
             </div>
-
             <div class="slider-wrapper reveal-up">
                 <div class="reviews-slider" id="reviews-slider">
                     <div class="review-card active">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"Best coffee I've had in the city! The caramel macchiato is rich,
-                            perfectly sweet, and the staff makes you feel like family."</p>
+                        <p class="review-text">"Best coffee in the city! Table service with QR ordering is so smooth."</p>
                         <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
-                                alt="Sarah M.">
-                            <div>
-                                <h4>Sarah M.</h4>
-                                <span>Regular Customer</span>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Sarah M.">
+                            <div><h4>Sarah M.</h4><span>Regular Customer</span></div>
                         </div>
                     </div>
-
                     <div class="review-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"Beautiful place and amazing atmosphere. Great Wi-Fi and even better
-                            croissants. My go-to remote work spot every week."</p>
+                        <p class="review-text">"Perfect work zone tables. Quiet, great Wi-Fi, amazing croissants."</p>
                         <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
-                                alt="Daniel K.">
-                            <div>
-                                <h4>Daniel K.</h4>
-                                <span>Architect</span>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Daniel K.">
+                            <div><h4>Daniel K.</h4><span>Architect</span></div>
                         </div>
                     </div>
-
                     <div class="review-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"The avocado toast and matcha latte combination is incredible! Super
-                            fresh ingredients and top-notch aesthetic vibes."</p>
+                        <p class="review-text">"Reserved a booth for my birthday — everything was ready when we arrived!"</p>
                         <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
-                                alt="Emma W.">
-                            <div>
-                                <h4>Emma W.</h4>
-                                <span>Food Blogger</span>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80" alt="Emma W.">
+                            <div><h4>Emma W.</h4><span>Food Blogger</span></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Slider Controls -->
                 <div class="slider-controls">
                     <button id="prev-review"><i class="fa-solid fa-arrow-left"></i></button>
                     <div class="slider-dots" id="slider-dots"></div>
@@ -322,16 +1006,46 @@
                 </div>
             </div>
         </section>
-
-        <!-- ==================== LOCATION & CONTACT SECTION ==================== -->
+        <!-- ==================== FAQ ==================== -->
+        <section class="faq section container" id="faq">
+            <div class="section-header text-center reveal-up">
+                <span class="section-subtitle">Help Center</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list reveal-up">
+                <details class="faq-item">
+                    <summary>How do I order from my table?</summary>
+                    <p>Scan the QR code on your table card or select your table number on our floor plan. Add items to cart and checkout as dine-in.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I reserve a specific table?</summary>
+                    <p>Yes! Choose your preferred zone when booking. We'll assign the best matching table and confirm by phone.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How long is my reservation held?</summary>
+                    <p>We hold your table for 15 minutes after your reservation time. Call us if you're running late.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there a waitlist on busy days?</summary>
+                    <p>When all tables are occupied, join the waitlist in-store or on this page. We'll text when your table is ready.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you offer split bills?</summary>
+                    <p>Ask your server or use the "Request Bill" button. We can split by item or equally among guests.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Are pets allowed on the patio?</summary>
+                    <p>Well-behaved pets are welcome at outdoor tables T-16 through T-20. Water bowls available on request.</p>
+                </details>
+            </div>
+        </section>
+        <!-- ==================== CONTACT ==================== -->
         <section class="contact section container" id="contact">
             <div class="section-header text-center reveal-up">
                 <span class="section-subtitle">Get In Touch</span>
                 <h2 class="section-title">Visit Us or Drop a Message</h2>
             </div>
-
             <div class="contact-grid">
-                <!-- Info Column -->
                 <div class="contact-info reveal-left">
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
@@ -362,16 +1076,20 @@
                             <p>Saturday - Sunday: 8:00 AM - 10:00 PM</p>
                         </div>
                     </div>
-
-                    <!-- Map Placeholder -->
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-chair"></i></div>
+                        <div>
+                            <h4>Seating Capacity</h4>
+                            <p>20 tables · up to 68 guests</p>
+                            <p>Zones: Window, Work, Booth, Patio</p>
+                        </div>
+                    </div>
                     <div class="map-placeholder">
                         <i class="fa-solid fa-map-location-dot"></i>
                         <p>Interactive Map Placeholder</p>
                         <small>123 Coffee Street, Downtown</small>
                     </div>
                 </div>
-
-                <!-- Form Column -->
                 <div class="contact-form-wrapper reveal-right">
                     <form class="contact-form" id="contact-form">
                         <h3>Send us a Message</h3>
@@ -388,61 +1106,64 @@
                             <small class="error-msg"></small>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="contact-subject" placeholder="Subject">
+                            <select id="contact-subject">
+                                <option value="">Select subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="reservation">Reservation Question</option>
+                                <option value="catering">Catering / Events</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
                             <small class="error-msg"></small>
                         </div>
                         <div class="form-group">
                             <textarea id="contact-message" rows="5" placeholder="Your Message..."></textarea>
                             <small class="error-msg"></small>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-paper-plane"></i> Send
-                            Message</button>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
-
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="footer-container container">
             <div class="footer-col">
-                <a href="#home" class="logo footer-logo">
-                    <span>☕ BREW & BEANS</span>
-                </a>
-                <p>Crafting memorable coffee moments with passion and quality every single day.</p>
+                <a href="#home" class="logo footer-logo"><span>☕ BREW & BEANS</span></a>
+                <p>Crafting memorable coffee moments with table service, reservations, and passion every day.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
-
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#menu">Our Menu</a></li>
-                    <li><a href="#specials">Special Offers</a></li>
+                    <li><a href="#tables">Table Map</a></li>
+                    <li><a href="#reservations">Reservations</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
-                <h4>Popular Menu</h4>
+                <h4>Services</h4>
                 <ul>
-                    <li><a href="#menu">Caramel Macchiato</a></li>
-                    <li><a href="#menu">Iced Mocha Latte</a></li>
-                    <li><a href="#menu">Strawberry Cream Cake</a></li>
-                    <li><a href="#menu">Avocado Toast</a></li>
+                    <li><a href="#menu">Dine-In Ordering</a></li>
+                    <li><a href="#menu">Takeaway</a></li>
+                    <li><a href="#menu">Delivery</a></li>
+                    <li><a href="#reservations">Private Events</a></li>
+                    <li><a href="#waitlist">Waitlist</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Newsletter</h4>
-                <p>Subscribe to receive exclusive coffee deals and updates.</p>
+                <p>Subscribe for exclusive deals and table reservation tips.</p>
                 <form class="newsletter-form" id="newsletter-form">
                     <input type="email" placeholder="Enter your email" required>
                     <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
@@ -450,104 +1171,154 @@
             </div>
         </div>
         <div class="footer-bottom text-center">
-            <p>&copy; 2026 Brew & Beans Café. All Rights Reserved.</p>
+            <p>&copy; 2026 Brew & Beans Café. All Rights Reserved. · 20 Tables · QR Ordering · Table Service</p>
         </div>
     </footer>
-
-    <!-- ==================== SIDEBARS & MODALS ==================== -->
-
-    <!-- Shopping Cart Drawer -->
+    <!-- ==================== CART DRAWER ==================== -->
     <div class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
-            <h3><i class="fa-solid fa-cart-shopping"></i> Your Shopping Cart</h3>
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
             <button id="close-cart"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="cart-body" id="cart-items">
-            <!-- Dynamic Cart Items -->
+        <div class="cart-order-type" id="cart-order-type-display">
+            <span class="cart-type-badge" id="cart-type-badge"><i class="fa-solid fa-chair"></i> Dine-In</span>
+            <span class="cart-table-badge hidden" id="cart-table-badge">Table —</span>
         </div>
+        <div class="cart-body" id="cart-items"></div>
         <div class="cart-footer">
             <div class="summary-line"><span>Subtotal:</span><span id="cart-subtotal">$0.00</span></div>
             <div class="summary-line"><span>Tax (10%):</span><span id="cart-tax">$0.00</span></div>
-            <div class="summary-line"><span>Delivery Fee:</span><span id="cart-delivery">$2.00</span></div>
+            <div class="summary-line" id="delivery-fee-line"><span>Delivery Fee:</span><span id="cart-delivery">$0.00</span></div>
             <hr>
             <div class="summary-line total-line"><span>Total:</span><span id="cart-total">$0.00</span></div>
-            <button class="btn btn-primary w-100" id="checkout-btn"><i class="fa-solid fa-credit-card"></i> Proceed to
-                Checkout</button>
+            <button class="btn btn-primary w-100" id="checkout-btn">
+                <i class="fa-solid fa-credit-card"></i> Proceed to Checkout
+            </button>
         </div>
     </div>
-
-    <!-- Favorites Drawer -->
+    <!-- ==================== FAVORITES DRAWER ==================== -->
     <div class="fav-drawer" id="fav-drawer">
         <div class="cart-header">
             <h3><i class="fa-solid fa-heart"></i> Your Favorites</h3>
             <button id="close-fav"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="cart-body" id="fav-items">
-            <!-- Dynamic Favorite Items -->
+        <div class="cart-body" id="fav-items"></div>
+    </div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <!-- ==================== TABLE NUMBER MODAL ==================== -->
+    <div class="modal" id="table-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-table-modal"><i class="fa-solid fa-xmark"></i></button>
+            <h2><i class="fa-solid fa-qrcode"></i> Enter Your Table Number</h2>
+            <p class="modal-desc">Find the number on the card at your table, or pick from the floor plan.</p>
+            <form id="table-number-form">
+                <div class="form-group">
+                    <label for="manual-table-input">Table Number (1–20)</label>
+                    <input type="number" id="manual-table-input" min="1" max="20" placeholder="e.g. 7" required>
+                    <small class="error-msg" id="table-input-err"></small>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Confirm Table</button>
+            </form>
         </div>
     </div>
-
-    <!-- Backdrop Overlay -->
-    <div class="drawer-overlay" id="drawer-overlay"></div>
-
-    <!-- Product Customization Modal -->
+    <!-- ==================== CALL WAITER MODAL ==================== -->
+    <div class="modal" id="waiter-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-waiter-modal"><i class="fa-solid fa-xmark"></i></button>
+            <h2><i class="fa-solid fa-bell-concierge"></i> Call Waiter</h2>
+            <p class="modal-desc">Select what you need. A staff member will come to your table shortly.</p>
+            <form id="waiter-request-form">
+                <div class="form-group">
+                    <label for="waiter-table">Your Table</label>
+                    <select id="waiter-table" required>
+                        <option value="">Select table</option>
+                    </select>
+                </div>
+                <div class="waiter-options">
+                    <label class="waiter-option"><input type="radio" name="waiter-reason" value="water" checked> 💧 Water Refill</label>
+                    <label class="waiter-option"><input type="radio" name="waiter-reason" value="utensils"> 🍴 Utensils / Napkins</label>
+                    <label class="waiter-option"><input type="radio" name="waiter-reason" value="bill"> 🧾 Request Bill</label>
+                    <label class="waiter-option"><input type="radio" name="waiter-reason" value="help"> 🙋 General Assistance</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Send Request</button>
+            </form>
+        </div>
+    </div>
+    <!-- ==================== PRODUCT CUSTOMIZATION MODAL ==================== -->
     <div class="modal" id="custom-modal">
         <div class="modal-content">
             <button class="modal-close" id="close-custom-modal"><i class="fa-solid fa-xmark"></i></button>
-            <div class="custom-body" id="custom-body">
-                <!-- Dynamic Customization Form -->
-            </div>
+            <div class="custom-body" id="custom-body"></div>
         </div>
     </div>
-
-    <!-- Checkout Modal -->
+    <!-- ==================== CHECKOUT MODAL ==================== -->
     <div class="modal" id="checkout-modal">
         <div class="modal-content checkout-modal-content">
             <button class="modal-close" id="close-checkout-modal"><i class="fa-solid fa-xmark"></i></button>
-
             <div id="checkout-step-form">
                 <h2>Checkout Order</h2>
+                <div class="checkout-order-type">
+                    <label>Order Type</label>
+                    <div class="order-type-toggle">
+                        <button type="button" class="order-type-btn active" data-type="dine-in">
+                            <i class="fa-solid fa-chair"></i> Dine-In
+                        </button>
+                        <button type="button" class="order-type-btn" data-type="takeaway">
+                            <i class="fa-solid fa-bag-shopping"></i> Takeaway
+                        </button>
+                        <button type="button" class="order-type-btn" data-type="delivery">
+                            <i class="fa-solid fa-motorcycle"></i> Delivery
+                        </button>
+                    </div>
+                </div>
                 <form id="checkout-form">
+                    <div class="form-group" id="checkout-table-group">
+                        <label for="chk-table">Table Number</label>
+                        <select id="chk-table" required>
+                            <option value="">Select your table</option>
+                        </select>
+                        <small class="hint">Number shown on your table card</small>
+                    </div>
                     <div class="form-group">
-                        <label>Full Name</label>
+                        <label for="chk-name">Full Name</label>
                         <input type="text" id="chk-name" placeholder="John Doe" required>
                     </div>
                     <div class="form-group">
-                        <label>Phone Number</label>
+                        <label for="chk-phone">Phone Number</label>
                         <input type="text" id="chk-phone" placeholder="+855 12 345 678" required>
                     </div>
-                    <div class="form-group">
-                        <label>Delivery Address</label>
-                        <textarea id="chk-address" rows="2" placeholder="Street name, Building No..."
-                            required></textarea>
+                    <div class="form-group hidden" id="checkout-address-group">
+                        <label for="chk-address">Delivery Address</label>
+                        <textarea id="chk-address" rows="2" placeholder="Street, building, floor..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Payment Method</label>
+                        <label for="chk-payment">Payment Method</label>
                         <select id="chk-payment" required>
                             <option value="Cash on Delivery">Cash on Delivery</option>
                             <option value="ABA Mobile">ABA Mobile Pay</option>
                             <option value="Credit Card">Credit Card</option>
+                            <option value="Pay at Table">Pay at Table</option>
                         </select>
                     </div>
-
+                    <div class="form-group checkbox-group hidden" id="split-bill-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="chk-split-bill"> Request split bill at table
+                        </label>
+                    </div>
                     <div class="checkout-summary">
                         <h4>Order Total: <span id="checkout-total-val">$0.00</span></h4>
                     </div>
-
-                    <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-check-circle"></i> Confirm
-                        Order</button>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fa-solid fa-check-circle"></i> Confirm Order
+                    </button>
                 </form>
             </div>
-
-            <!-- Order Tracking State (Hidden Initially) -->
             <div id="checkout-step-success" class="text-center hidden">
                 <div class="success-icon">🎉</div>
                 <h2>Order Successfully Placed!</h2>
-                <p>Thank you for ordering from <strong>Brew & Beans</strong>.</p>
+                <p id="checkout-success-msg">Thank you for ordering from <strong>Brew & Beans</strong>.</p>
                 <div class="order-number-badge">Order Number: <span id="order-number-display">#BB1025</span></div>
-
-                <!-- Order Progress Tracker -->
-                <div class="order-tracker">
+                <div class="order-tracker" id="order-tracker">
                     <div class="tracker-step completed" id="step-received">
                         <div class="circle">✓</div>
                         <p>Order Received</p>
@@ -560,33 +1331,24 @@
                         <div class="circle">🛍️</div>
                         <p>Ready</p>
                     </div>
-                    <div class="tracker-step" id="step-delivered">
+                    <div class="tracker-step" id="step-final">
                         <div class="circle">🚀</div>
-                        <p>Delivered</p>
+                        <p id="step-final-label">Served</p>
                     </div>
                 </div>
-
                 <button class="btn btn-secondary mt-2" id="finish-checkout-btn">Back to Home</button>
             </div>
         </div>
     </div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
-
-    <!-- Toast Container -->
-    <div class="toast-container" id="toast-container"></div>
-
-    <!-- ==================== ADMIN LOGIN MODAL ==================== -->
+    <!-- ==================== ADMIN LOGIN ==================== -->
     <div class="modal" id="admin-login-modal">
         <div class="modal-content">
             <button class="modal-close" id="close-admin-login"><i class="fa-solid fa-xmark"></i></button>
             <h2><i class="fa-solid fa-lock"></i> Admin Portal Login</h2>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Access restriction. Default
-                Key: <strong>admin123</strong></p>
+            <p class="modal-desc">Access restricted. Default key: <strong>admin123</strong></p>
             <form id="admin-login-form">
                 <div class="form-group">
-                    <label>Admin Access Passcode</label>
+                    <label for="admin-pass-input">Admin Passcode</label>
                     <input type="password" id="admin-pass-input" placeholder="Enter passcode..." required>
                     <small class="error-msg" id="admin-login-err"></small>
                 </div>
@@ -594,26 +1356,59 @@
             </form>
         </div>
     </div>
-
-    <!-- ==================== ADMIN DASHBOARD MODAL ==================== -->
+    <!-- ==================== ADMIN DASHBOARD ==================== -->
     <div class="modal" id="admin-dashboard-modal">
         <div class="modal-content admin-dashboard-content">
             <button class="modal-close" id="close-admin-dash"><i class="fa-solid fa-xmark"></i></button>
-
             <div class="admin-header">
                 <h2>☕ Brew & Beans Admin Dashboard</h2>
-                <button class="btn btn-secondary btn-sm" id="admin-logout-btn"><i
-                        class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                <button class="btn btn-secondary btn-sm" id="admin-logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
             </div>
-
+            <div class="admin-stats-row">
+                <div class="admin-stat-card">
+                    <span class="admin-stat-num" id="admin-stat-orders">0</span>
+                    <span class="admin-stat-label">Active Orders</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-num" id="admin-stat-tables-free">0</span>
+                    <span class="admin-stat-label">Tables Free</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-num" id="admin-stat-reservations">0</span>
+                    <span class="admin-stat-label">Reservations</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-num" id="admin-stat-waitlist">0</span>
+                    <span class="admin-stat-label">Waitlist</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-num" id="admin-stat-requests">0</span>
+                    <span class="admin-stat-label">Waiter Calls</span>
+                </div>
+            </div>
             <div class="admin-tabs">
-                <button class="admin-tab-btn active" data-tab="orders-tab"><i class="fa-solid fa-receipt"></i> Orders
-                    (<span id="admin-order-count">0</span>)</button>
-                <button class="admin-tab-btn" data-tab="products-tab"><i class="fa-solid fa-mug-saucer"></i> Manage
-                    Products</button>
+                <button class="admin-tab-btn active" data-tab="orders-tab">
+                    <i class="fa-solid fa-receipt"></i> Orders (<span id="admin-order-count">0</span>)
+                </button>
+                <button class="admin-tab-btn" data-tab="tables-tab">
+                    <i class="fa-solid fa-chair"></i> Tables
+                </button>
+                <button class="admin-tab-btn" data-tab="reservations-tab">
+                    <i class="fa-solid fa-calendar"></i> Reservations
+                </button>
+                <button class="admin-tab-btn" data-tab="waitlist-tab">
+                    <i class="fa-solid fa-hourglass"></i> Waitlist
+                </button>
+                <button class="admin-tab-btn" data-tab="requests-tab">
+                    <i class="fa-solid fa-bell"></i> Requests
+                </button>
+                <button class="admin-tab-btn" data-tab="products-tab">
+                    <i class="fa-solid fa-mug-saucer"></i> Products
+                </button>
             </div>
-
-            <!-- Orders Management Tab -->
+            <!-- Orders Tab -->
             <div class="admin-tab-content active" id="orders-tab">
                 <h3>Live Customer Orders</h3>
                 <div class="admin-table-wrapper">
@@ -621,20 +1416,90 @@
                         <thead>
                             <tr>
                                 <th>Order ID</th>
+                                <th>Type</th>
+                                <th>Table</th>
                                 <th>Customer</th>
                                 <th>Details</th>
                                 <th>Total</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-orders-list">
-                            <!-- Dynamic Orders -->
-                        </tbody>
+                        <tbody id="admin-orders-list"></tbody>
                     </table>
                 </div>
             </div>
-
-            <!-- Product Management Tab -->
+            <!-- Tables Tab -->
+            <div class="admin-tab-content" id="tables-tab">
+                <h3>Floor Management — 20 Tables</h3>
+                <div class="admin-floor-legend">
+                    <span class="available">Available</span>
+                    <span class="occupied">Occupied</span>
+                    <span class="reserved">Reserved</span>
+                    <span class="cleaning">Needs Cleaning</span>
+                </div>
+                <div class="admin-floor-grid" id="admin-floor-grid"></div>
+                <div class="admin-table-actions">
+                    <button class="btn btn-secondary btn-sm" id="admin-mark-all-clean">Mark All Available</button>
+                </div>
+            </div>
+            <!-- Reservations Tab -->
+            <div class="admin-tab-content" id="reservations-tab">
+                <h3>Upcoming Reservations</h3>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Guest</th>
+                                <th>Phone</th>
+                                <th>Date & Time</th>
+                                <th>Party</th>
+                                <th>Zone</th>
+                                <th>Table</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-reservations-list"></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Waitlist Tab -->
+            <div class="admin-tab-content" id="waitlist-tab">
+                <h3>Current Waitlist Queue</h3>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Guests</th>
+                                <th>Joined</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-waitlist-list"></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Waiter Requests Tab -->
+            <div class="admin-tab-content" id="requests-tab">
+                <h3>Waiter Requests</h3>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Request</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-requests-list"></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Products Tab -->
             <div class="admin-tab-content" id="products-tab">
                 <h3>Add New Product</h3>
                 <form id="add-product-form" class="admin-add-form">
@@ -649,10 +1514,8 @@
                     <input type="number" step="0.01" id="new-prod-price" placeholder="Price ($)" required>
                     <input type="url" id="new-prod-img" placeholder="Image URL" required>
                     <textarea id="new-prod-desc" rows="2" placeholder="Description" required></textarea>
-                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-plus"></i> Add Item to
-                        Menu</button>
+                    <button type="submit" class="btn btn-gold"><i class="fa-solid fa-plus"></i> Add Item</button>
                 </form>
-
                 <h3 style="margin-top: 2rem;">Existing Inventory</h3>
                 <div class="admin-table-wrapper">
                     <table class="admin-table">
@@ -665,16 +1528,16 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-products-list">
-                            <!-- Dynamic Products -->
-                        </tbody>
+                        <tbody id="admin-products-list"></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
+    <button class="back-to-top" id="back-to-top" title="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <div class="toast-container" id="toast-container"></div>
     <script src="script.js"></script>
 </body>
-
 </html>
